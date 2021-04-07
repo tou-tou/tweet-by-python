@@ -3,6 +3,8 @@ import json, configparser
 from requests_oauthlib import OAuth1Session
 import random
 from PIL import Image
+import os
+import datetime
 
 # --------------------------------------------------
 # configparserの宣言とiniファイルの読み込み
@@ -24,8 +26,22 @@ url_text = "https://api.twitter.com/1.1/statuses/update.json"
 # select image paths
 # 最新の日付フォルダ3日分からランダムに4つのパスを選択
 # vrchat配下のフォルダ名を降順で並べて、3日以内のフォルダ内の画像からランダムで4つ選ぶ、なければスキップ
-selected_image_paths = [
-]
+path = "Pictures/VRChat"
+files = os.listdir(path)
+dirs = [f for f in files if os.path.isdir(os.path.join(path, f))]
+dates_list = sorted(dirs,reverse=True)
+
+# now = datetime.datetime.now()
+# three_ago = now - datetime.timedelta(days=3)
+# three_ago_str = three_ago.strftime('%Y-%m-%d')
+
+three_dirs = dates_list[0:3]
+selected_image_paths = []
+
+for d in three_dirs:
+    image_path = path + '/' + d 
+    image_file = os.listdir(image_path)
+
 
 media_ids = []
 # dataに画像
