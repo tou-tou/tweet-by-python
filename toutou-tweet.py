@@ -19,7 +19,7 @@ twitter = OAuth1Session(CK, CS, AT, AS)
 
 url_media = "https://upload.twitter.com/1.1/media/upload.json?media_category=tweet_image"
 url_text = "https://api.twitter.com/1.1/statuses/update.json"
-path = "D:\\Pictures\\VRChat"
+path = "E:\\Pictures\\VRChat"
 files = os.listdir(path)
 dirs = [f for f in files if os.path.isdir(os.path.join(path, f))]
 dates_list = sorted(dirs,reverse=True)
