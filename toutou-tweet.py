@@ -28,10 +28,12 @@ dates_list = sorted(dirs,reverse=True)
 now = datetime.datetime.now()
 someday_ago = now - datetime.timedelta(days=3)
 someday_ago_str = someday_ago.strftime('%Y-%m-%d')
-some_dirs = dates_list[0:3]
 if dates_list[0] < someday_ago_str:
     sys.exit()
 
+# TWEETDAY日間分の写真から選ぶ
+TWEETDAY = 2
+some_dirs = dates_list[0:TWEETDAY]
 image_paths = []
 selected_image_paths = []
 for d in some_dirs:
