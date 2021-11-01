@@ -24,11 +24,22 @@ files = os.listdir(path)
 dirs = [f for f in files if os.path.isdir(os.path.join(path, f))]
 dates_list = sorted(dirs,reverse=True)
 
-# 3日間VRChatに入ってなかったら投稿しない
+def isWeekEnd(now):
+    day = now.strftime('%A')
+    if day in ['Friday','Saturday','Sunday']:
+        return True
+    return False
+
+def isRecentLogin(now,lastDate):
+    someday_ago = now - datetime.timedelta(days=7)
+    someday_ago_str = someday_ago.strftime('%Y-%m-%d')
+    if lastDate <= someday_ago_str:
+        return False
+    return True
+
+# 7日間VRChatに入ってなかったら投稿しない、金土日以外は投稿しない
 now = datetime.datetime.now()
-someday_ago = now - datetime.timedelta(days=3)
-someday_ago_str = someday_ago.strftime('%Y-%m-%d')
-if dates_list[0] < someday_ago_str:
+if (not isRecentLogin(now , dates_list[0])) or (not isWeekEnd(now)):
     sys.exit()
 
 # TWEETDAY日間分の写真から選ぶ
