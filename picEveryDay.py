@@ -35,8 +35,9 @@ dirs = [f for f in firstfiles if os.path.isdir(os.path.join(path, f)) and isMont
 for dirname in dirs:
     monthpath = path + '\\' + dirname
     files = os.listdir(monthpath)
-    imagefiles = [f for f in files if os.path.isfile(os.path.join(path, f))]
-    for imageFileName in imagefiles:
+    imageFiles = [f for f in files if os.path.isfile(os.path.join(monthpath, f))]
+    for imageFileName in imageFiles:
+        
         currentFilePath = monthpath + '\\' + imageFileName
 
         fileinfo = pathlib.Path(currentFilePath)
